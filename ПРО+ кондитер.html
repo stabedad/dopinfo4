@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweet Dreams - Портфолио кондитера</title>
+    <style>
+        /* Основные стили */
+        :root {
+            --primary: #FF6B8B;
+            --secondary: #FFB8B8;
+            --accent: #FFDAC1;
+            --dark: #4A4A4A;
+            --light: #FFF9F4;
+            --text: #3E3E3E;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        /* Шапка */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 20px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+        }
+        
+        .logo-text h1 {
+            font-size: 1.8rem;
+            color: white;
+        }
+        
+        .logo-text p {
+            font-size: 0.9rem;
+            color: var(--light);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+        }
+        
+        /* Герой секция */
+        .hero {
+            height: 100vh;
+            background: url('https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+            margin-top: 90px;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            max-width: 600px;
+        }
+        
+        .hero-content h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        /* Секции */
+        section {
+            padding: 100px 10%;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--text);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        /* Обо мне */
+        .about {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-img {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .about-content {
+            flex: 1;
+        }
+        
+        .about-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+        
+        .about-content p {
+            margin-bottom: 15px;
+        }
+        
+        /* Услуги */
+        .services {
+            background-color: #f9f9f9;
+        }
+        
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Галерея */
+        .portfolio {
+            background-color: white;
+        }
+        
+        .portfolio-filter {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            background: none;
+            border: none;
+            padding: 8px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+            font-size: 1rem;
+            color: var(--text);
+            transition: all 0.3s ease;
+            border-radius: 30px;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .portfolio-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 250px;
+        }
+        
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(74, 74, 74, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        
+        .portfolio-overlay h3 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .portfolio-overlay p {
+            color: var(--accent);
+        }
+        
+        /* Статистика */
+        .stats {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+            padding: 100px 10%;
+        }
+        
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .stat-item {
+            padding: 30px;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        /* Ингредиенты */
+        .ingredients {
+            background-color: var(--light);
+        }
+        
+        .ingredients-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .ingredient-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .ingredient-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .ingredient-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .ingredient-content {
+            padding: 20px;
+        }
+        
+        .ingredient-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        /* Отзывы */
+        .testimonials {
+            background-color: var(--accent);
+        }
+        
+        .testimonials-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 30px;
+            padding-bottom: 20px;
+        }
+        
+        .testimonial-card {
+            min-width: 300px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .testimonial-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+        
+        /* FAQ */
+        .faq {
+            background-color: white;
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 50px auto 0;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .faq-question {
+            background-color: var(--light);
+            padding: 15px 20px;
+            cursor: pointer;
+        }
+        
+        .faq-answer {
+            padding: 20px;
+            display: none;
+        }
+        
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+        
+        /* Процесс работы */
+        .process {
+            background-color: var(--light);
+        }
+        
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+        
+        .step:not(:last-child)::after {
+            content: '→';
+            position: absolute;
+            right: -10px;
+            top: 30px;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        
+        /* Мастер-классы */
+        .masterclasses {
+            background-color: white;
+        }
+        
+        .masterclasses-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .masterclass-card {
+            background-color: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .masterclass-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .masterclass-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .masterclass-content {
+            padding: 20px;
+        }
+        
+        .masterclass-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        /* Блог */
+        .blog {
+            background-color: var(--light);
+        }
+        
+        .blog-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .blog-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .blog-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .blog-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .blog-content {
+            padding: 20px;
+        }
+        
+        .blog-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .blog-date {
+            color: #777;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        /* Google Maps */
+        .map {
+            height: 500px;
+            background-color: #eee;
+        }
+        
+        #google-map {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Контакты */
+        .contact {
+            background-color: white;
+        }
+        
+        .contact-container {
+            display: flex;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .contact-details {
+            margin-bottom: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+        }
+        
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+            background-color: var(--light);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Футер */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 50px 10% 20px;
+        }
+        
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-col {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col ul li a {
+            color: #ddd;
+            text-decoration: none;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 5%;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary);
+                flex-direction: column;
+                padding: 20px 0;
+                text-align: center;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 15px 0;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero {
+                padding: 0 5%;
+                margin-top: 70px;
+            }
+            
+            .hero-content h2 {
+                font-size: 2.2rem;
+            }
+            
+            section {
+                padding: 60px 5%;
+            }
+            
+            .about {
+                flex-direction: column;
+            }
+            
+            .process-steps {
+                flex-direction: column;
+            }
+            
+            .step:not(:last-child)::after {
+                content: '↓';
+                right: auto;
+                left: 50%;
+                top: auto;
+                bottom: -30px;
+                transform: translateX(-50%);
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Шапка -->
+    <header>
+        <div class="logo">
+            <img src="https://via.placeholder.com/50" alt="Логотип">
+            <div class="logo-text">
+                <h1>ваше название</h1>
+                <p>Кондитерские шедевры на заказ</p>
+            </div>
+        </div>
+        <nav>
+            <ul id="nav-menu">
+                <li><a href="#home">Главная</a></li>
+                <li><a href="#about">Обо мне</a></li>
+                <li><a href="#services">Услуги</a></li>
+                <li><a href="#portfolio">Портфолио</a></li>
+                <li><a href="#masterclasses">Мастер-классы</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+            <div class="mobile-menu" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Герой секция -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h2>Авторские десерты от кондитера Анны</h2>
+            <p>Создаю неповторимые вкусы и дизайн для ваших особенных моментов. Натуральные ингредиенты, профессиональный подход и внимание к деталям.</p>
+            <a href="#contact" class="btn">Заказать торт</a>
+        </div>
+    </section>
+
+    <!-- Обо мне -->
+    <section class="about-section" id="about">
+        <div class="section-title">
+            <h2>Обо мне</h2>
+        </div>
+        <div class="about">
+            <div class="about-img">
+                <img src="https://sun9-57.userapi.com/c11429/u137955806/-6/x_65802668.jpg">
+            </div>
+            <div class="about-content">
+                <h3>Ваше имя - профессиональный кондитер</h3>
+                <p>Моя любовь к кондитерскому искусству началась 10 лет назад, когда я испекла свой первый бисквит. С тех пор я превратила хобби в профессию, пройдя обучение в лучших кулинарных школах Европы.</p>
+                <p>Я специализируюсь на авторских тортах и десертах для особых мероприятий. Каждый мой торт - это уникальное произведение искусства, сочетающее безупречный вкус и эстетику.</p>
+                <p>В работе использую только натуральные ингредиенты премиального качества: бельгийский шоколад Valrhona, французскую муку, свежие ягоды и фрукты. Никаких искусственных красителей и консервантов.</p>
+                <a href="#portfolio" class="btn">Посмотреть работы</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Услуги -->
+    <section class="services" id="services">
+        <div class="section-title">
+            <h2>Мои услуги</h2>
+        </div>
+        <div class="services-container">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-birthday-cake"></i>
+                </div>
+                <h3>Торты на заказ</h3>
+                <p>Свадебные, юбилейные, детские торты по индивидуальному дизайну. Разработка уникального вкуса и оформления под ваш праздник.</p>
+                <p>Стоимость: от 3000 руб./кг</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-cookie-bite"></i>
+                </div>
+                <h3>Десертные столы</h3>
+                <p>Комплексное оформление сладкого стола для мероприятий: капкейки, макаруны, пирожные, конфеты ручной работы.</p>
+                <p>Стоимость: от 1500 руб./чел</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <h3>Корпоративные подарки</h3>
+                <p>Эксклюзивные сладкие подарки для партнеров и сотрудников: фирменные наборы конфет, пряники с логотипом.</p>
+                <p>Стоимость: от 1500 руб./набор</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Портфолио -->
+    <section class="portfolio" id="portfolio">
+        <div class="section-title">
+            <h2>Мои работы</h2>
+        </div>
+        <div class="portfolio-filter">
+            <button class="filter-btn active" data-filter="all">Все работы</button>
+            <button class="filter-btn" data-filter="wedding">Свадебные</button>
+            <button class="filter-btn" data-filter="birthday">Дни рождения</button>
+            <button class="filter-btn" data-filter="kids">Детские</button>
+        </div>
+        <div class="portfolio-grid">
+            <div class="portfolio-item wedding">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Свадебный торт">
+                <div class="portfolio-overlay">
+                    <h3>Свадебный торт "Нежность"</h3>
+                    <p>Трехъярусный торт с ванильным бисквитом и ягодным муссом</p>
+                </div>
+            </div>
+            <div class="portfolio-item birthday">
+                <img src="https://images.unsplash.com/photo-1550617931-e17a7b70dce2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Торт на день рождения">
+                <div class="portfolio-overlay">
+                    <h3>Торт "Ягодное наслаждение"</h3>
+                    <p>Шоколадный бисквит с малиновым курдом и свежими ягодами</p>
+                </div>
+            </div>
+            <div class="portfolio-item kids">
+                <img src="https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Детский торт">
+                <div class="portfolio-overlay">
+                    <h3>Торт "Единорог"</h3>
+                    <p>Ванильный бисквит с крем-чизом для детского праздника</p>
+                </div>
+            </div>
+            <div class="portfolio-item wedding">
+                <img src="https://images.unsplash.com/photo-1562440499-64c9a111f713?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Свадебный торт">
+                <div class="portfolio-overlay">
+                    <h3>Свадебный торт "Элеганс"</h3>
+                    <p>Миндальный бисквит с лимонным курдом и ягодным желе</p>
+                </div>
+            </div>
+            <div class="portfolio-item birthday">
+                <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Торт на юбилей">
+                <div class="portfolio-overlay">
+                    <h3>Торт "Шоколадная фантазия"</h3>
+                    <p>Шоколадный бисквит с ганашем и карамелью</p>
+                </div>
+            </div>
+            <div class="portfolio-item kids">
+                <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Детский торт">
+                <div class="portfolio-overlay">
+                    <h3>Торт "Гоночный автомобиль"</h3>
+                    <p>Шоколадный бисквит с карамельным кремом</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Статистика -->
+    <section class="stats">
+        <div class="section-title">
+            <h2 style="color: white;">Я в цифрах</h2>
+        </div>
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number">150+</div>
+                <div class="stat-text">Довольных клиентов</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">300+</div>
+                <div class="stat-text">Созданных тортов</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">10</div>
+                <div class="stat-text">Лет опыта</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">50+</div>
+                <div class="stat-text">Проведённых МК</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ингредиенты -->
+    <section class="ingredients">
+        <div class="section-title">
+            <h2>Использую только лучшее</h2>
+        </div>
+        <div class="ingredients-container">
+            <div class="ingredient-card">
+                <div class="ingredient-img">
+                    <img src="https://images.unsplash.com/photo-1511381939415-e44015466834?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Шоколад">
+                </div>
+                <div class="ingredient-content">
+                    <h3>Бельгийский шоколад</h3>
+                    <p>Использую только премиальный шоколад Valrhona и Callebaut с содержанием какао от 70% для насыщенного вкуса.</p>
+                </div>
+            </div>
+            <div class="ingredient-card">
+                <div class="ingredient-img">
+                    <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Фрукты">
+                </div>
+                <div class="ingredient-content">
+                    <h3>Свежие фрукты</h3>
+                    <p>Сезонные ягоды и фрукты от проверенных поставщиков. Работаю только со свежими продуктами без консервантов.</p>
+                </div>
+            </div>
+            <div class="ingredient-card">
+                <div class="ingredient-img">
+                    <img src="https://images.unsplash.com/photo-1603569283847-aa295f0d016a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Ваниль">
+                </div>
+                <div class="ingredient-content">
+                    <h3>Натуральная ваниль</h3>
+                    <p>Настоящие ванильные стручки с Мадагаскара для неповторимого аромата. Никаких искусственных ароматизаторов.</p>
+                </div>
+            </div>
+            <div class="ingredient-card">
+                <div class="ingredient-img">
+                    <img src="https://images.unsplash.com/photo-1593629719130-21a545f5c5c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Орехи">
+                </div>
+                <div class="ingredient-content">
+                    <h3>Отборные орехи</h3>
+                    <p>Миндаль, фундук и грецкие орехи высшего качества. Обжариваю и перерабатываю вручную для идеального вкуса.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Отзывы -->
+    <section class="testimonials">
+        <div class="section-title">
+            <h2>Отзывы клиентов</h2>
+        </div>
+        <div class="testimonials-container">
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    Заказывали свадебный торт у Анны - это было настоящее произведение искусства! Все гости были в восторге не только от внешнего вида, но и от вкуса. Особенно понравился ягодный мусс - легкий и нежный.
+                </div>
+                <div class="testimonial-author">
+                    <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Мария">
+                    <div class="author-info">
+                        <h4>Мария и Алексей</h4>
+                        <p>Свадьба, июнь 2023</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    Торт на годик дочери превзошел все ожидания! Анна воплотила в жизнь все наши пожелания. Ребенок был в восторге от единорога, а взрослые оценили изысканный вкус. Обязательно закажем еще!
+                </div>
+                <div class="testimonial-author">
+                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Ольга">
+                    <div class="author-info">
+                        <h4>Ольга</h4>
+                        <p>День рождения, май 2023</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    Заказали корпоративные подарки для партнеров - наборы макарун с логотипом компании. Все были в восторге! Качество на высшем уровне, упаковка стильная, доставка вовремя. Рекомендую!
+                </div>
+                <div class="testimonial-author">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Дмитрий">
+                    <div class="author-info">
+                        <h4>Дмитрий</h4>
+                        <p>Корпоративные подарки, апрель 2023</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+        <div class="section-title">
+            <h2>Частые вопросы</h2>
+        </div>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">Как заказать торт?</div>
+                <div class="faq-answer">
+                    <p>Для заказа свяжитесь со мной любым удобным способом: через форму на сайте, по телефону или в социальных сетях. Желательно делать заказ минимум за 3-5 дней до мероприятия, для сложных тортов - за 1-2 недели.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Какие начинки вы предлагаете?</div>
+                <div class="faq-answer">
+                    <p>У меня более 20 вариантов начинок: классические (шоколадный ганаш, крем-чиз, ванильный мусс), фруктовые (маракуйя-малина, манго-пассифлора), необычные (соленая карамель с попкорном, чай матча с белым шоколадом). При заказе можно выбрать до 3 начинок для многоярусных тортов.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Есть ли доставка?</div>
+                <div class="faq-answer">
+                    <p>Да, я осуществляю доставку по Москве и области. Стоимость зависит от расстояния и сложности транспортировки торта (от 500 руб. по Москве). Также возможен самовывоз из моей кондитерской в центре города.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Можно ли изменить дизайн торта после заказа?</div>
+                <div class="faq-answer">
+                    <p>Да, изменения возможны, но не позднее чем за 5 дней до даты изготовления. После этого срока изменения могут повлиять на сроки выполнения заказа. Все изменения согласовываются индивидуально.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Процесс работы -->
+    <section class="process">
+        <div class="section-title">
+            <h2>Как я работаю</h2>
+        </div>
+        <div class="process-steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Консультация</h3>
+                <p>Обсуждаем ваши пожелания: повод, количество гостей, предпочтения по вкусу и дизайну. Вы можете прислать фото примеров.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Дегустация</h3>
+                <p>При желании вы можете посетить дегустацию и выбрать понравившиеся начинки из моего меню (доступно 5 вариантов).</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Подтверждение</h3>
+                <p>Я разрабатываю эскиз торта, согласовываю с вами все детали. После утверждения вносится предоплата 30%.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Изготовление</h3>
+                <p>Торт готовится за 1-2 дня до мероприятия из свежих ингредиентов. В день мероприятия осуществляется доставка или самовывоз.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Мастер-классы -->
+    <section class="masterclasses" id="masterclasses">
+        <div class="section-title">
+            <h2>Мастер-классы</h2>
+        </div>
+        <div class="masterclasses-container">
+            <div class="masterclass-card">
+                <div class="masterclass-img">
+                    <img src="https://images.unsplash.com/photo-1495195134817-aeb325a55b65?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Мастер-класс по макарунам">
+                </div>
+                <div class="masterclass-content">
+                    <h3>Идеальные макаруны</h3>
+                    <p>Научитесь готовить французские макаруны с идеальной текстуры. Все секреты и тонкости от профессионала.</p>
+                    <p><strong>Длительность:</strong> 4 часа</p>
+                    <p><strong>Стоимость:</strong> 5000 руб.</p>
+                    <a href="#contact" class="btn">Записаться</a>
+                </div>
+            </div>
+            <div class="masterclass-card">
+                <div class="masterclass-img">
+                    <img src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Мастер-класс по капкейкам">
+                </div>
+                <div class="masterclass-content">
+                    <h3>Капкейки с декором</h3>
+                    <p>Освойте технику приготовления идеальных капкейков и научитесь создавать красивые украшения из крема.</p>
+                    <p><strong>Длительность:</strong> 3 часа</p>
+                    <p><strong>Стоимость:</strong> 4000 руб.</p>
+                    <a href="#contact" class="btn">Записаться</a>
+                </div>
+            </div>
+            <div class="masterclass-card">
+                <div class="masterclass-img">
+                    <img src="https://images.unsplash.com/photo-1509482560494-4126f8225994?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Мастер-класс по тортам">
+                </div>
+                <div class="masterclass-content">
+                    <h3>Торты для начинающих</h3>
+                    <p>Основы приготовления бисквитов, кремов и сборки тортов. Идеально для тех, кто хочет начать печь дома.</p>
+                    <p><strong>Длительность:</strong> 5 часов</p>
+                    <p><strong>Стоимость:</strong> 6000 руб.</p>
+                    <a href="#contact" class="btn">Записаться</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блог -->
+    <section class="blog">
+        <div class="section-title">
+            <h2>Полезные статьи</h2>
+        </div>
+        <div class="blog-container">
+            <div class="blog-card">
+                <div class="blog-img">
+                    <img src="https://images.unsplash.com/photo-1603532648955-039310d6845d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Как выбрать торт">
+                </div>
+                <div class="blog-content">
+                    <h3>Как выбрать торт на праздник</h3>
+                    <div class="blog-date">15 мая 2023</div>
+                    <p>Подробное руководство по выбору торта в зависимости от повода, количества гостей и сезона.</p>
+                    <a href="#" class="btn">Читать</a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <div class="blog-img">
+                    <img src="https://images.unsplash.com/photo-1514516345957-ace9c47a393f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Тренды десертов">
+                </div>
+                <div class="blog-content">
+                    <h3>Тренды в десертах 2023</h3>
+                    <div class="blog-date">28 апреля 2023</div>
+                    <p>Обзор самых популярных вкусов и дизайнов тортов в этом сезоне.</p>
+                    <a href="#" class="btn">Читать</a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <div class="blog-img">
+                    <img src="https://images.unsplash.com/photo-1552689486-f6773047d19f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Хранение торта">
+                </div>
+                <div class="blog-content">
+                    <h3>Как правильно хранить торт</h3>
+                    <div class="blog-date">10 апреля 2023</div>
+                    <p>Советы по хранению торта до праздника и после, чтобы сохранить свежесть и вкус.</p>
+                    <a href="#" class="btn">Читать</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Google Maps -->
+    <section class="map">
+        <iframe id="google-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2245.372951144276!2d37.61729931593095!3d55.75581798055211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54a5a738fa419%3A0x7c347d506f52311!2z0JrRgNCw0YHQvdCw0Y8g0J_Qu9C-0YnQsNC00Yw!5e0!3m2!1sru!2sru!4v1620000000000!5m2!1sru!2sru" allowfullscreen="" loading="lazy"></iframe>
+    </section>
+
+    <!-- Контакты -->
+    <section class="contact" id="contact">
+        <div class="section-title">
+            <h2>Контакты</h2>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Как со мной связаться</h3>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <p>Ваш адрес (если он есть)</p>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <p>+7 (999) 123-45-67</p>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <p>ваша почта</p>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <p>Пн-Пт: 9:00 - 20:00<br>Сб-Вс: 10:00 - 18:00</p>
+                    </div>
+                </div>
+                <h3>Я в соцсетях</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-vk"></i></a>
+                </div>
+            </div>
+            <div class="contact-form">
+                <form id="order-form">
+                    <h3>Форма заказа</h3>
+                    <div class="form-group">
+                        <label for="name">Ваше имя*</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Телефон*</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Дата мероприятия</label>
+                        <input type="date" id="date" name="date">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Опишите ваш заказ*</label>
+                        <textarea id="message" name="message" required placeholder="Тип торта/десерта, количество гостей, предпочтения по дизайну и вкусу"></textarea>
+                    </div>
+                    <button type="submit" class="btn">Отправить заявку</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>Sweet Dreams</h3>
+                <p>Авторские торты и десерты на заказ в Москве. Натуральные ингредиенты, эксклюзивный дизайн и неповторимый вкус.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Меню</h3>
+                <ul>
+                    <li><a href="#home">Главная</a></li>
+                    <li><a href="#about">Обо мне</a></li>
+                    <li><a href="#services">Услуги</a></li>
+                    <li><a href="#portfolio">Портфолио</a></li>
+                    <li><a href="#masterclasses">Мастер-классы</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Услуги</h3>
+                <ul>
+                    <li><a href="#">Свадебные торты</a></li>
+                    <li><a href="#">Детские торты</a></li>
+                    <li><a href="#">Десертные столы</a></li>
+                    <li><a href="#">Корпоративные подарки</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Контакты</h3>
+                <ul>
+                    <li><a href="tel:+79991234567">+7 (999) 123-45-67</a></li>
+                    <li><a href="mailto:anna@sweetdreams.ru">anna@sweetdreams.ru</a></li>
+                    <li>г. Москва, ул. Кондитерская, 15</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Sweet Dreams. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Мобильное меню
+        const mobileMenuBtn = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+        });
+        
+        // Плавная прокрутка
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                if (navMenu.classList.contains('show')) {
+                    navMenu.classList.remove('show');
+                }
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Фильтрация портфолио
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Удаляем активный класс у всех кнопок
+                filterBtns.forEach(btn => btn.classList.remove('active'));
+                // Добавляем активный класс текущей кнопке
+                btn.classList.add('active');
+                
+                const filter = btn.getAttribute('data-filter');
+                
+                portfolioItems.forEach(item => {
+                    if (filter === 'all' || item.classList.contains(filter)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // FAQ аккордеон
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', () => {
+                // Закрываем все открытые элементы
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                
+                // Открываем/закрываем текущий элемент
+                item.classList.toggle('active');
+            });
+        });
+        
+        // Форма заказа
+        const orderForm = document.getElementById('order-form');
+        
+        orderForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Получаем данные формы
+            const formData = new FormData(this);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+            
+            // Здесь можно добавить отправку данных на сервер
+            console.log('Данные формы:', data);
+            
+            // Показываем сообщение об успехе
+            alert('Спасибо за вашу заявку! Я свяжусь с вами в ближайшее время для уточнения деталей.');
+            
+            // Очищаем форму
+            this.reset();
+        });
+    </script>
+</body>
+</html>
